@@ -5,6 +5,7 @@
         <title>Vyxia's stupid ass website lmao</title>
     </head>
     <body style="background-color: color(srgb 0.15 0 0.15);">
+        <button disabled id="muteButton" onclick="muteMusic();">mute music</button>
         <div style="display: grid; align-items: center; grid-template-columns: 0fr 1fr;">
             <img src="images/vyxia heading.png", height="50", title="Made by @Artifyber on Twitter", alt="", style="margin-right: 5px;">
             <h1 style="text-align: left; margin-bottom: 10px;">Vyxia's Stupid Website</h1>
@@ -57,6 +58,7 @@
         </div>
         <hr>
         <h3 style="color: gray">might add more later</h3>
+        <audio id="autoplayedAudio" src="miku fly me to the moon.mp3" loop style="display: none;"></audio>
         <style>
             .imageLinks img {
                 margin-right: 10px;
@@ -80,5 +82,21 @@
                 justify-self: center;
             }
         </style>
+        <script>
+            document.addEventListener('click', musicPlay);
+            function musicPlay() {
+                document.getElementById('autoplayedAudio').play();
+                document.getElementById('muteButton').removeAttribute('disabled');
+                document.removeEventListener('click', musicPlay);
+            }
+            function muteMusic() {
+                var audio = document.getElementById('autoplayedAudio');
+                audio.muted = !audio.muted; 
+                document.getElementById('muteButton').textContent = 'unmute music';
+                if (!audio.muted) {
+                    document.getElementById('muteButton').textContent = 'mute music';
+                }
+            }
+        </script>
     </body>
 </html>
