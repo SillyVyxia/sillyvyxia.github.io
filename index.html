@@ -4,8 +4,12 @@
         <link rel="icon", href="images/vyxia heading.png">
         <title>Vyxia's stupid ass website lmao</title>
     </head>
+    <div id="splashscreen" style="z-index: 10;">
+        <h1 style="margin-bottom: 0px;">click/tap to enter</h1>
+        <h2 style="text-align: center; color: gray; margin-top: 0px;">(i need to blast music into your ears)</h2>
+    </div>
     <body style="background-color: color(srgb 0.15 0 0.15);">
-        <button disabled id="muteButton" onclick="muteMusic();">mute music</button>
+        <button style="position: absolute;" disabled id="muteButton" onclick="muteMusic();">mute music</button>
         <div style="display: grid; align-items: center; grid-template-columns: 0fr 1fr;">
             <img src="images/vyxia heading.png", height="50", title="Made by @Artifyber on Twitter", alt="", style="margin-right: 5px;">
             <h1 style="text-align: left; margin-bottom: 10px;">Vyxia's Stupid Website</h1>
@@ -55,14 +59,29 @@
             <a href="https://github.com/SillyVyxia/fnfbweb", target="_blank">
                 <h2>FNF 0.3.2 in HTML5</h2>
             </a>
+            <a href="https://github.com/SillyVyxia/sillyvyxia.github.io" target="_blank">
+                <h2>this website actually</h2>
+            </a>
         </div>
         <hr>
         <h3 style="color: gray">might add more later</h3>
         <audio id="autoplayedAudio" src="miku fly me to the moon.mp3" loop style="display: none;"></audio>
         <style>
+            #splashscreen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: black;
+            }
             .imageLinks img {
                 margin-right: 10px;
                 margin-bottom: 10px;
+            }
+            .imageLinks img:hover {
+                height: 110px;
+                border: 2px solid white;
             }
             h1 {
                 text-align: center;
@@ -71,6 +90,7 @@
             }
             h2 {
                 font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
             }
             h3 {
                 font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -87,6 +107,7 @@
             function musicPlay() {
                 document.getElementById('autoplayedAudio').play();
                 document.getElementById('muteButton').removeAttribute('disabled');
+                document.getElementById('splashscreen').remove();
                 document.removeEventListener('click', musicPlay);
             }
             function muteMusic() {
