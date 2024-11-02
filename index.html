@@ -94,6 +94,7 @@
             }
             h3 {
                 font-family: "Comic Sans MS", "Comic Sans", cursive;
+                text-align: center;
             }
             h5 {
                 font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -117,6 +118,20 @@
                 if (!audio.muted) {
                     document.getElementById('muteButton').textContent = 'mute music';
                 }
+            }
+            function pauseMusic(paused) {
+                var audio = document.getElementById('autoplayedAudio');
+                if (paused) {
+                    audio.pause()
+                } else {
+                    audio.play()
+                }
+            }
+            window.onblur = function() {
+                pauseMusic(true);
+            }
+            window.onfocus = function() {
+                pauseMusic(false);
             }
         </script>
     </body>
