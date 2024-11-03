@@ -1,2 +1,2 @@
 # sillyvyxia.github.io
-website
+https://sillyvyxia.github.io
