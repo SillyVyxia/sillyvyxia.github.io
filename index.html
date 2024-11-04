@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="common.css">
     <head>
         <link rel="icon", href="images/vyxia heading.png">
         <title>Vyxia's stupid ass website lmao</title>
@@ -10,25 +11,7 @@
     </div>
     <body style="background-color: color(srgb 0.15 0 0.15);">
         <button style="position: absolute;" disabled id="muteButton" onclick="muteMusic();">mute music</button>
-        <div style="display: grid; align-items: center; grid-template-columns: 0fr 1fr;">
-            <img src="images/vyxia heading.png", height="50", title="Made by @Artifyber on Twitter", alt="", style="margin-right: 5px;">
-            <h1 style="text-align: left; margin-bottom: 10px;">Vyxia's Stupid Website</h1>
-        </div>
-        <h5 style="color: gray; margin-top: 0px; margin-bottom: 0px; text-align: center;">yes i am using comic sans, no i wont change it</h5>
-        <div class="navBar", style="margin-top: 5px;">
-            <a href="https://sillyvyxia.github.io/">
-                <button disabled>Home</button>
-            </a>
-            <a href="https://sillyvyxia.github.io/qtweb/", target="_blank">
-                <button>/qtweb</button>
-            </a>
-            <a href="https://sillyvyxia.github.io/fnfbweb/", target="_blank">
-                <button>/fnfbweb</button>
-            </a>
-            <a href="https://sillyvyxia.github.io/video-embed-discord/", target="_blank">
-                <button disabled>/video-embed-discord</button>
-            </a>
-        </div>
+        <iframe id="navBar" src="navBar.html"></iframe>
         <hr>
         <div class="imageLinks" style="margin-top: 15px;">
             <a href="https://www.roblox.com/users/462248690/profile", target="_blank">
@@ -79,40 +62,23 @@
                 background-color: black;
             }
             .imageLinks img {
-                margin-right: 10px;
-                margin-bottom: 10px;
+                margin-right: 8px;
+                margin-bottom: 8px;
+                border: 2px solid transparent;
             }
             .imageLinks img:hover {
-                height: 110px;
                 border: 2px solid white;
-            }
-            h1 {
-                text-align: center;
-                color: white;
-                font-family: "Comic Sans MS", "Comic Sans", cursive;
-            }
-            h2 {
-                font-family: Arial, Helvetica, sans-serif;
-                text-align: center;
-            }
-            h3 {
-                font-family: "Comic Sans MS", "Comic Sans", cursive;
-                text-align: center;
-            }
-            h5 {
-                font-family: "Comic Sans MS", "Comic Sans", cursive;
-            }
-            div {
-                justify-self: center;
             }
         </style>
         <script>
+            var clicked = false;
             document.addEventListener('click', musicPlay);
             function musicPlay() {
                 document.getElementById('autoplayedAudio').play();
                 document.getElementById('muteButton').removeAttribute('disabled');
                 document.getElementById('splashscreen').remove();
                 document.removeEventListener('click', musicPlay);
+                clicked = true;
             }
             function muteMusic() {
                 var audio = document.getElementById('autoplayedAudio');
@@ -123,6 +89,9 @@
                 }
             }
             function pauseMusic(paused) {
+                if (!clicked) {
+                    return;
+                }
                 var audio = document.getElementById('autoplayedAudio');
                 if (paused) {
                     audio.pause()
@@ -130,12 +99,9 @@
                     audio.play()
                 }
             }
-            window.onblur = function() {
-                pauseMusic(true);
-            }
-            window.onfocus = function() {
-                pauseMusic(false);
-            }
+            document.addEventListener("visibilitychange", function(){
+                pauseMusic(document.visibilityState != "visible");
+            });
         </script>
     </body>
 </html>
